@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class Azzah22 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Membaca input dari pengguna
+        int pergeseran = scanner.nextInt(); // Baris pertama: angka pergeseran
+        scanner.nextLine(); // Membersihkan newline setelah nextInt
+        String kalimat = scanner.nextLine(); // Baris kedua: kalimat
+
+        // Memisahkan kalimat menjadi array kata
+        String[] kataArray = kalimat.split(" ");
+        int jumlahKata = kataArray.length;
+
+        // Menghitung pergeseran yang valid
+        pergeseran = pergeseran % jumlahKata; // Menghindari pergeseran yang lebih dari jumlah kata
+
+        // Jika tidak ada pergeseran
+        if (pergeseran == 0) {
+            System.out.println(kalimat);
+            return;
+        }
+
+        // Menggeser kata-kata ke kanan
+        String[] kataHasil = new String[jumlahKata];
+
+        // Mengisi array hasil dengan pergeseran yang telah dihitung
+        for (int i = 0; i < jumlahKata; i++) {
+            kataHasil[(i + pergeseran) % jumlahKata] = kataArray[i];
+        }
+
+        // Menyusun kembali kalimat hasil
+        String hasilKalimat = String.join(" ", kataHasil);
+        
+        // Menampilkan hasil
+        System.out.println(hasilKalimat);
+
+        scanner.close();
+    }
+}
