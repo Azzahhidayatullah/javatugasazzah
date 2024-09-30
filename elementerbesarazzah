@@ -1,0 +1,23 @@
+public class Azzah21 {
+    public static void main(String[] args) {
+        // Mendefinisikan angka-angka dalam array
+        int[] angkaList = {1, 72, 19, 23, 20, 78, 29, 24, 6, 204};
+
+        // Memastikan array tidak kosong
+        if (angkaList.length == 0) {
+            System.out.println("Array tidak boleh kosong.");
+            return; // Keluar dari program jika array kosong
+        }
+
+        // Mencari angka terbesar
+        int terbesar = angkaList[0]; // Anggap angka pertama adalah yang terbesar
+        for (int angka : angkaList) {
+            if (angka > terbesar) {
+                terbesar = angka; // Update jika ditemukan angka yang lebih besar
+            }
+        }
+
+        // Menampilkan angka terbesar
+        System.out.println("Angka terbesar adalah: " + terbesar);
+    }
+}
