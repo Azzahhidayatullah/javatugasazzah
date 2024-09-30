@@ -1,0 +1,49 @@
+import java.util.*;
+
+public class azzah23 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Membaca dua baris input
+        System.out.println("2 3 4 5 6");
+        String input1 = scanner.nextLine();
+        System.out.println("2 6 4 7 8 9");
+        String input2 = scanner.nextLine();
+        
+        // Mengonversi input menjadi array integer
+        int[] array1 = Arrays.stream(input1.split(" "))
+                             .mapToInt(Integer::parseInt)
+                             .toArray();
+        int[] array2 = Arrays.stream(input2.split(" "))
+                             .mapToInt(Integer::parseInt)
+                             .toArray();
+        
+        // Menggunakan HashSet untuk menemukan angka yang berbeda
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> set2 = new HashSet<>();
+        
+        for (int num : array1) {
+            set1.add(num);
+        }
+        
+        for (int num : array2) {
+            set2.add(num);
+        }
+        
+        // Menemukan angka yang berbeda
+        Set<Integer> result = new HashSet<>(set1);
+        result.addAll(set2); // Menambahkan semua elemen dari kedua set
+        
+        Set<Integer> intersection = new HashSet<>(set1);
+        intersection.retainAll(set2); // Menemukan irisan dari kedua set
+        
+        result.removeAll(intersection); // Menghapus elemen yang sama
+        
+        // Mengurutkan hasil
+        List<Integer> outputList = new ArrayList<>(result);
+        Collections.sort(outputList);
+        
+        // Menampilkan hasil
+        System.out.println("Angka-angka yang berbeda: " + outputList);
+    }
+}
