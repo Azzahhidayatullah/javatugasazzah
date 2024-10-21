@@ -1,0 +1,36 @@
+class Azzah:
+    def __init__(self):
+        self.history = []  # Menyimpan riwayat teks
+        self.redo_stack = []  # Menyimpan teks untuk redo
+        self.current_text = ""  # Teks saat ini
+
+    def show(self):
+        """Menampilkan semua teks yang ditulis ke dalam text editor."""
+        print("Current Text:")
+        print(self.current_text)
+
+    def undo(self):
+        """Mengembalikan isi teks ke isi sebelumnya."""
+        if self.history:
+            self.redo_stack.append(self.current_text)  # Simpan ke redo stack
+            self.current_text = self.history.pop()  # Ambil teks terakhir dari history
+        else:
+            print("No more undos available.")
+
+    def redo(self):
+        """Memulihkan pengembalian isi teks ke isi yang lebih baru."""
+        if self.redo_stack:
+            self.history.append(self.current_text)  # Simpan ke history
+            self.current_text = self.redo_stack.pop()  # Ambil teks terakhir dari redo stack
+        else:
+            print("No more redos available.")
+
+    def write(self, text):
+        """Menambahkan teks ke dalam teks editor."""
+        self.history.append(self.current_text)  # Simpan teks saat ini ke history
+        self.current_text += text  # Tambahkan teks baru
+
+
+# Contoh penggunaan
+editor = Azzah()
+
