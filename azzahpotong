@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class FileSplitter {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Membaca nama file dari pengguna
+        System.out.print("Masukkan nama file yang ingin dibaca: ");
+        String filename = scanner.nextLine();
+
+        // Membaca ukuran potongan dari pengguna
+        System.out.print("Masukkan jumlah baris per potongan: ");
+        int linesPerPart = scanner.nextInt();
+
+        // Queue untuk menyimpan potongan file
+        Queue<String> queue = new LinkedList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            int lineCount = 0;
+            StringBuilder currentPart = new StringBuilder();
+
+            while ((line = reader.readLine()) != null) {
+                currentPart.append(line).append(System.lineSeparator());
+                lineCount++;
+
+                // Jika sudah mencapai jumlah baris yang diinginkan, masukkan ke queue
+                if (lineCount == linesPerPart) {
+                    queue.add(currentPart.toString());
+                    currentPart.setLength(0); // Reset untuk potongan berikutnya
+                    lineCount = 0; // Res
